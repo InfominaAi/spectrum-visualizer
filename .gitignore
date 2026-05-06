@@ -22,3 +22,6 @@ docs/
 .cursor/
 
 .DS_Store
+
+# Environment files (keep secrets out of repo)
+.env

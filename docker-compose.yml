@@ -1,0 +1,17 @@
+services:
+  mcmc-visualizer:
+    build: .
+    ports:
+      - "${APP_PORT:-8050}:8050"
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    command: tunnel run --token "${CLOUDFLARED_TOKEN}"
+    profiles:
+      - tunnel
